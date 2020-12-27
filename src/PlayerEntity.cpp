@@ -126,7 +126,7 @@ void PlayerEntity::Render(Renderer* renderer)
         };
 
         auto color = c[net->ownerClientId];
-        renderer->RenderRectangle(Rectangle(position - Dimensions() / 2, Dimensions()), color, -0.99);
+        renderer->RenderRectangle(Rectangle(position - Dimensions() / 2, Dimensions()), _playerColor, -0.99);
     }
 
     // Render name
@@ -191,4 +191,9 @@ void PlayerEntity::Attack(Entity* entity)
     attackTarget = entity;
     state = PlayerState::Attacking;
     pathFollower->FollowEntity(entity, 200);
+}
+
+void PlayerEntity::DoSerialize(EntitySerializer& serializer)
+{
+    serializer.Add("color", _playerColor);
 }
