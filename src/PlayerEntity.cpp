@@ -8,6 +8,7 @@
 #include "Renderer/Renderer.hpp"
 #include "torch/torch.h"
 #include "MessageHud.hpp"
+#include "imgui/imgui.h"
 
 #include "CastleEntity.hpp"
 #include "FireballEntity.hpp"
@@ -195,5 +196,5 @@ void PlayerEntity::Attack(Entity* entity)
 
 void PlayerEntity::DoSerialize(EntitySerializer& serializer)
 {
-    serializer.Add("color", _playerColor);
+
 }

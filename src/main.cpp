@@ -1,4 +1,5 @@
 #include <SDL2/SDL.h>
+#include <Resource/BaseResource.hpp>
 
 #include "Engine.hpp"
 #include "InputService.hpp"
@@ -47,6 +48,10 @@ struct Game : IGame
     {
         auto map = "erebor"_sid;
         auto engine = GetEngine();
+
+        auto resourceManager = NewResourceManager::GetInstance();
+        resourceManager->SetBaseAssetPath("../assets");
+        resourceManager->LoadResourceFromFile("Sprites/castle.png", "castle");
 
         if(!g_isServer.Value())
         {
