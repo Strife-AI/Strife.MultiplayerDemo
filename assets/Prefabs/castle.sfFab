@@ -1,0 +1,7 @@
+{
+  "name": "castle",
+  "type": "castle",
+  "properties": [
+    {"name": "sprite", "value": "castle"}
+  ]
+}

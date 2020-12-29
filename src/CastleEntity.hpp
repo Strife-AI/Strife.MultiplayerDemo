@@ -8,6 +8,8 @@
 
 DEFINE_ENTITY(CastleEntity, "castle")
 {
+    void DoSerialize(EntitySerializer& serializer) override;
+
     void OnAdded() override;
     void OnDestroyed() override;
     void Update(float deltaTime) override;

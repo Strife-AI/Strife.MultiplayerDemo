@@ -69,6 +69,19 @@ void PlayerEntity::OnAdded()
             outDecision.action = PlayerAction::Down;
         };
     }
+
+    {
+        static EntitySerializer serializer{
+            EntitySerializerMode::Read,
+            std::unordered_map<std::string, std::string>{
+                std::pair<std::string, std::string>("color", "115 221 131 255"),
+                std::pair<std::string, std::string>("teststr", "Hello World!"),
+                std::pair<std::string, std::string>("position", "100 100")
+            }
+        };
+
+        this->DoSerialize(serializer);
+    }
 }
 
 void PlayerEntity::ReceiveServerEvent(const IEntityEvent& ev)
@@ -117,15 +130,15 @@ void PlayerEntity::Render(Renderer* renderer)
 
     // Render player
     {
-        Color c[5] = {
-            Color::CornflowerBlue(),
-            Color::Green(),
-            Color::Orange(),
-            Color::HotPink(),
-            Color::Yellow()
-        };
+//        Color c[5] = {
+//            Color::CornflowerBlue(),
+//            Color::Green(),
+//            Color::Orange(),
+//            Color::HotPink(),
+//            Color::Yellow()
+//        };
 
-        auto color = c[net->ownerClientId];
+//        auto color = c[net->ownerClientId];
         renderer->RenderRectangle(Rectangle(position - Dimensions() / 2, Dimensions()), _playerColor, -0.99);
     }
 
@@ -195,5 +208,6 @@ void PlayerEntity::Attack(Entity* entity)
 
 void PlayerEntity::DoSerialize(EntitySerializer& serializer)
 {
-    serializer.Add("color", _playerColor);
+    serializer
+        .Add("color", _playerColor);
 }
