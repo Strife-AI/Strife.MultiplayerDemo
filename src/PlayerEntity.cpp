@@ -133,11 +133,11 @@ void PlayerEntity::Render(Renderer* renderer)
     // Render name
     {
         FontSettings font;
-        font.spriteFont = ResourceManager::GetResource<SpriteFont>("console-font"_sid);
+        font.spriteFont = GetResource<SpriteFontResource>("console-font");
         font.scale = 0.75;
 
         auto& name = scene->replicationManager->GetClient(net->ownerClientId).clientName;
-        Vector2 size = font.spriteFont->MeasureStringWithNewlines(name.c_str(), 0.75).AsVectorOfType<float>();
+        Vector2 size = font.spriteFont->GetFont()->MeasureStringWithNewlines(name.c_str(), 0.75).AsVectorOfType<float>();
         renderer->RenderString(font, name.c_str(), Center() - Vector2(0, 32) - size / 2, -1);
     }
 }
