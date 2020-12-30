@@ -29,7 +29,7 @@ if (MSVC)
 
   message(================ ${TORCH_DIR})
 
-  add_custom_command(TARGET Sample
+  add_custom_command(TARGET MultiplayerDemo
                      POST_BUILD
                      COMMAND ${CMAKE_COMMAND} -E copy_if_different
                      ${TORCH_DLLS}
