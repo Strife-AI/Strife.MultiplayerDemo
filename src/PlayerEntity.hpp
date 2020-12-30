@@ -46,6 +46,8 @@ DEFINE_ENTITY(PlayerEntity, "player")
     void MoveTo(Vector2 position);
     void Attack(Entity* entity);
 
+    void DoSerialize(EntitySerializer& serializer) override;
+
     void OnAdded() override;
     void ReceiveServerEvent(const IEntityEvent& ev) override;
     void OnDestroyed() override;
@@ -61,6 +63,8 @@ DEFINE_ENTITY(PlayerEntity, "player")
     EntityReference<Entity> attackTarget;
     PlayerState state = PlayerState::None;
     float attackCoolDown = 0;
+
+    Color _playerColor = Color::CornflowerBlue();
 
     void Die(const OutOfHealthEvent* outOfHealth);
 };

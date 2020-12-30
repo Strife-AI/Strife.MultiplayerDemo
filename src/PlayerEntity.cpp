@@ -8,6 +8,7 @@
 #include "Renderer/Renderer.hpp"
 #include "torch/torch.h"
 #include "MessageHud.hpp"
+#include "imgui/imgui.h"
 
 #include "CastleEntity.hpp"
 #include "FireballEntity.hpp"
@@ -126,17 +127,17 @@ void PlayerEntity::Render(Renderer* renderer)
         };
 
         auto color = c[net->ownerClientId];
-        renderer->RenderRectangle(Rectangle(position - Dimensions() / 2, Dimensions()), color, -0.99);
+        renderer->RenderRectangle(Rectangle(position - Dimensions() / 2, Dimensions()), _playerColor, -0.99);
     }
 
     // Render name
     {
         FontSettings font;
-        font.spriteFont = ResourceManager::GetResource<SpriteFont>("console-font"_sid);
+        font.spriteFont = GetResource<SpriteFontResource>("console-font");
         font.scale = 0.75;
 
         auto& name = scene->replicationManager->GetClient(net->ownerClientId).clientName;
-        Vector2 size = font.spriteFont->MeasureStringWithNewlines(name.c_str(), 0.75).AsVectorOfType<float>();
+        Vector2 size = font.spriteFont->GetFont()->MeasureStringWithNewlines(name.c_str(), 0.75).AsVectorOfType<float>();
         renderer->RenderString(font, name.c_str(), Center() - Vector2(0, 32) - size / 2, -1);
     }
 }
@@ -191,4 +192,9 @@ void PlayerEntity::Attack(Entity* entity)
     attackTarget = entity;
     state = PlayerState::Attacking;
     pathFollower->FollowEntity(entity, 200);
+}
+
+void PlayerEntity::DoSerialize(EntitySerializer& serializer)
+{
+
 }

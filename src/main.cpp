@@ -1,4 +1,5 @@
 #include <SDL2/SDL.h>
+#include <Resource/ResourceManager.hpp>
 
 #include "Engine.hpp"
 #include "InputService.hpp"
@@ -22,8 +23,13 @@ struct Game : IGame
             .SetWindowCaption("Breakout")
             .SetGameName("breakout")
             .ExecuteUserConfig("user.cfg")
-            .EnableDevConsole("console-font")
-            .AddResourcePack("MultiplayerDemo.x2rp");
+            .EnableDevConsole("console-font");
+
+        auto resourceManager = ResourceManager::GetInstance();
+        resourceManager->SetBaseAssetPath("../assets");
+        resourceManager->LoadResourceFromFile("Sprites/castle.png", "castle");
+        resourceManager->LoadResourceFromFile("Tilemaps/Erebor.tmx", "erebor");
+        resourceManager->LoadResourceFromFile("Sprites/Spritesheets/font.png", "console-font", ".sfnt");
     }
 
     void ConfigureEngine(EngineConfig& config) override
@@ -45,7 +51,7 @@ struct Game : IGame
 
     void OnGameStart() override
     {
-        auto map = "erebor"_sid;
+        auto map = "erebor";
         auto engine = GetEngine();
 
         if(!g_isServer.Value())
@@ -91,7 +97,7 @@ void UploadToServer(ConsoleCommandBinder& binder)
 
     if (client != nullptr)
     {
-        bool successfullyStarted = client->fileTransferService.TryUploadFile(fileName, client->serverAddress);
+        bool successfullyStarted = client->fileTransferService.TryUploadFile(fileName.c_str(), client->serverAddress);
         if (!successfullyStarted)
         {
             Log("Failed to initiate file transfer for file %s\n", fileName.c_str());
