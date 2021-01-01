@@ -27,6 +27,7 @@ struct Game : IGame
 
         auto resourceManager = ResourceManager::GetInstance();
         resourceManager->SetBaseAssetPath("../assets");
+        resourceManager->LoadResourceFromFile("Sprite.shader", "sprite-shader");
         resourceManager->LoadResourceFromFile("Sprites/castle.png", "castle");
         resourceManager->LoadResourceFromFile("Tilemaps/Erebor.tmx", "erebor");
         resourceManager->LoadResourceFromFile("Sprites/Spritesheets/font.png", "console-font", ".sfnt");
