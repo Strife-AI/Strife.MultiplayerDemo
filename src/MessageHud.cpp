@@ -20,10 +20,10 @@ void MessageHud::ReceiveEvent(const IEntityEvent& ev)
     else if (auto renderEvent = ev.Is<RenderHudEvent>())
     {
         FontSettings font;
-        font.spriteFont = ResourceManager::GetResource<SpriteFont>("console-font"_sid);
+        font.spriteFont = GetResource<SpriteFontResource>("console-font");
         font.scale = 1;
 
-        auto height = font.spriteFont->CharacterDimension(font.scale).y;
+        auto height = font.spriteFont->GetFont()->CharacterDimension(font.scale).y;
         int i = 0;
 
         for (auto& message : _messages)
