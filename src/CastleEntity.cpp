@@ -8,9 +8,10 @@
 #include "Net/ReplicationManager.hpp"
 #include "MessageHud.hpp"
 
+
 void CastleEntity::OnAdded()
 {
-    spriteComponent = AddComponent<SpriteComponent>("castleSprite"_sid);
+    spriteComponent = AddComponent<SpriteComponent>("castle"_sid);
 
     Vector2 size{ 67 * 5, 55 * 5 };
     SetDimensions(size);
@@ -106,5 +107,8 @@ void CastleEntity::ReceiveEvent(const IEntityEvent& ev)
 
 void CastleEntity::DoSerialize(EntitySerializer& serializer)
 {
+    Vector2 position;
+    serializer.Add("position", position);
 
+    SetCenter(position);
 }

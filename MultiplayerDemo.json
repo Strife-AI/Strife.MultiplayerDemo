@@ -23,7 +23,7 @@
         },
         {
             "type": "sprite",
-            "name": "castleSprite",
+            "name": "castle",
             "path": "Sprites/castle.png"
         }
     ]

@@ -4,28 +4,28 @@
     {"name": "erebor", "type": "tilemap", "properties": [
         {"name": "position", "value": "0.0 0.0"}
     ]},
-    {"name": "castle1", "type": "castle", "prefab": "castle", "properties": [
+    {"name": "castle1", "prefab": "castle", "properties": [
       {"name": "position", "value": "736.0 736.0"}
     ]},
-    {"name": "castle2", "type": "castle", "prefab": "castle", "properties": [
+    {"name": "castle2", "prefab": "castle", "properties": [
       {"name": "position", "value": "1904.0 736.0"}
     ]},
-    {"name": "castle3", "type": "castle", "prefab": "castle", "properties": [
+    {"name": "castle3", "prefab": "castle", "properties": [
       {"name": "position", "value": "3088.0 736.0"}
     ]},
-    {"name": "castle4", "type": "castle", "prefab": "castle", "properties": [
+    {"name": "castle4", "prefab": "castle", "properties": [
       {"name": "position", "value": "736.0 1939.0"}
     ]},
-    {"name": "castle5", "type": "castle", "prefab": "castle", "properties": [
+    {"name": "castle5", "prefab": "castle", "properties": [
       {"name": "position", "value": "3088.0 1952.0"}
     ]},
-    {"name": "castle6", "type": "castle", "prefab": "castle", "properties": [
+    {"name": "castle6", "prefab": "castle", "properties": [
       {"name": "position", "value": "736.0 3149.0"}
     ]},
-    {"name": "castle7", "type": "castle", "prefab": "castle", "properties": [
+    {"name": "castle7", "prefab": "castle", "properties": [
       {"name": "position", "value": "1943.0 3152.0"}
     ]},
-    {"name": "castle7", "type": "castle", "prefab": "castle", "properties": [
+    {"name": "castle7", "prefab": "castle", "properties": [
       {"name": "position", "value": "3088.0 3148.0"}
     ]}
   ]

@@ -20,6 +20,7 @@ struct Game : IGame
         config
             .SetDefaultScene("erebor"_sid)
             .SetWindowCaption("Breakout")
+            .SetProjectFile(std::filesystem::current_path()/"../assets/MultiplayerDemo.sfProj")
             .SetGameName("breakout")
             .ExecuteUserConfig("user.cfg")
             .EnableDevConsole("console-font")
