@@ -28,7 +28,9 @@ struct Game : IGame
         auto resourceManager = ResourceManager::GetInstance();
         resourceManager->SetBaseAssetPath("../assets");
         resourceManager->LoadResourceFromFile("Sprite.shader", "sprite-shader");
+        resourceManager->LoadResourceFromFile("Particle.shader", "particle-shader");
         resourceManager->LoadResourceFromFile("Sprites/castle.png", "castle");
+        resourceManager->LoadResourceFromFile("Sprites/particle.png", "particle");
         resourceManager->LoadResourceFromFile("Tilemaps/Erebor.tmx", "erebor");
         resourceManager->LoadResourceFromFile("Sprites/Spritesheets/font.png", "console-font", ".sfnt");
     }
@@ -62,6 +64,15 @@ struct Game : IGame
         else
         {
             engine->StartServer(g_serverPort.Value(), map);
+        }
+
+        // New renderer prototype
+        {
+            auto renderer = engine->GetNewRenderer();
+            auto stage = new LayeredRenderStage;
+            stage->layers.push_back(renderer->GetLayer(0));
+
+            renderer->stages.push_back(stage);
         }
 
         auto neuralNetworkManager = engine->GetNeuralNetworkManager();

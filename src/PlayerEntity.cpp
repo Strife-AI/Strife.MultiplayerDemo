@@ -1,5 +1,6 @@
 #include <Memory/Util.hpp>
 #include <Components/LightComponent.hpp>
+#include <Components/ParticleSystemComponent.hpp>
 #include "PlayerEntity.hpp"
 #include "InputService.hpp"
 #include "Components/RigidBodyComponent.hpp"
@@ -38,6 +39,17 @@ void PlayerEntity::OnAdded()
     scene->SendEvent(PlayerAddedToGame(this));
 
     scene->GetService<InputService>()->players.push_back(this);
+
+    if (!scene->isServer)
+    {
+        auto particleSystem = AddComponent<ParticleSystemComponent>();
+        particleSystem->spawnRatePerSecond = 200;
+        particleSystem->spawnAngle = -3.14159 / 2;
+        particleSystem->spawnAngleRange = -3.14159 / 12;
+        particleSystem->particleLifetime = 5;
+        particleSystem->minSpeed = 50;
+        particleSystem->maxSpeed = 50;
+    }
 
     // Setup network and sensors
     {
@@ -114,6 +126,7 @@ void PlayerEntity::OnDestroyed()
 
 void PlayerEntity::Render(Renderer* renderer)
 {
+    return;
     auto position = Center();
 
     // Render player
