@@ -32,6 +32,8 @@ struct Game : IGame
         resourceManager->LoadResourceFromFile("Sprites/castle.png", "castle");
         resourceManager->LoadResourceFromFile("Sprites/particle.png", "particle");
         resourceManager->LoadResourceFromFile("Tilemaps/Erebor.tmx", "erebor");
+        resourceManager->LoadResourceFromFile("Tilemaps/Eriador.tmx", "eriador");
+        resourceManager->LoadResourceFromFile("Tilemaps/iso-64x64-outside.png", "iso");
         resourceManager->LoadResourceFromFile("Sprites/Spritesheets/font.png", "console-font", ".sfnt");
     }
 
@@ -54,7 +56,7 @@ struct Game : IGame
 
     void OnGameStart() override
     {
-        auto map = "erebor";
+        auto map = "eriador";
         auto engine = GetEngine();
 
         if(!g_isServer.Value())

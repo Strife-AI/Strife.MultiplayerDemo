@@ -40,16 +40,16 @@ void PlayerEntity::OnAdded()
 
     scene->GetService<InputService>()->players.push_back(this);
 
-    if (!scene->isServer)
-    {
-        auto particleSystem = AddComponent<ParticleSystemComponent>();
-        particleSystem->spawnRatePerSecond = 200;
-        particleSystem->spawnAngle = -3.14159 / 2;
-        particleSystem->spawnAngleRange = -3.14159 / 12;
-        particleSystem->particleLifetime = 5;
-        particleSystem->minSpeed = 50;
-        particleSystem->maxSpeed = 50;
-    }
+//    if (!scene->isServer)
+//    {
+//        auto particleSystem = AddComponent<ParticleSystemComponent>();
+//        particleSystem->spawnRatePerSecond = 200;
+//        particleSystem->spawnAngle = -3.14159 / 2;
+//        particleSystem->spawnAngleRange = -3.14159 / 12;
+//        particleSystem->particleLifetime = 5;
+//        particleSystem->minSpeed = 50;
+//        particleSystem->maxSpeed = 50;
+//    }
 
     // Setup network and sensors
     {
