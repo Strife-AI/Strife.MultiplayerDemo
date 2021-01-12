@@ -28,8 +28,6 @@ struct Game : IGame
 
         auto resourceManager = ResourceManager::GetInstance();
         resourceManager->SetBaseAssetPath("../assets");
-        resourceManager->LoadResourceFromFile("Sprites/castle.png", "castle");
-        resourceManager->LoadResourceFromFile("Tilemaps/Erebor.tmx", "erebor");
         resourceManager->LoadResourceFromFile("Sprites/Spritesheets/font.png", "console-font", ".sfnt");
     }
 
@@ -40,11 +38,13 @@ struct Game : IGame
 
     void BuildScene(Scene* scene) override
     {
-        if (scene->MapSegmentName() != "empty-map"_sid)
+        if (scene->SceneName() != "empty-map"_sid)
         {
             scene->AddService<InputService>();
             scene->AddService<NetworkPhysics>(scene->isServer);
             scene->AddService<MessageHud>();
+
+            scene->GetCameraFollower()->FollowMouse();
 
             //scene->GetEngine()->GetConsole()->Execute("light 0");
         }

@@ -11,7 +11,7 @@
 
 void CastleEntity::OnAdded()
 {
-    spriteComponent = AddComponent<SpriteComponent>("castle");
+    spriteComponent = AddComponent<SpriteComponent>("castleSprite");
 
     Vector2 size{ 67 * 5, 55 * 5 };
     SetDimensions(size);
@@ -107,8 +107,5 @@ void CastleEntity::ReceiveEvent(const IEntityEvent& ev)
 
 void CastleEntity::DoSerialize(EntitySerializer& serializer)
 {
-    Vector2 position;
-    serializer.Add("position", position);
 
-    SetCenter(position);
 }
