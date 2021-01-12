@@ -8,9 +8,10 @@
 #include "Net/ReplicationManager.hpp"
 #include "MessageHud.hpp"
 
+
 void CastleEntity::OnAdded()
 {
-    spriteComponent = AddComponent<SpriteComponent>("castle");
+    spriteComponent = AddComponent<SpriteComponent>("castleSprite");
 
     Vector2 size{ 67 * 5, 55 * 5 };
     SetDimensions(size);
@@ -102,4 +103,9 @@ void CastleEntity::ReceiveEvent(const IEntityEvent& ev)
             scene->GetCameraFollower()->CenterOn(Center());
         }
     }
+}
+
+void CastleEntity::DoSerialize(EntitySerializer& serializer)
+{
+
 }
